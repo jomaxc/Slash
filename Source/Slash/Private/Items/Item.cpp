@@ -2,23 +2,23 @@
 
 
 #include "Items/Item.h"
+#include "DrawDebugHelpers.h"
+#include "Slash/Slash.h"
 
-// Sets default values
+#define THIRTY 30
+
 AItem::AItem()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+ 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -31,6 +31,10 @@ void AItem::Tick(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Cyan, Message);
 		UE_LOG(LogTemp, Warning, TEXT("Item Name: %s"), *Name);
 	}
+
+	UWorld* World = GetWorld();
+	FVector Location = GetActorLocation();
+	DRAW_SPHERE(Location)
 
 }
 
